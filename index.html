@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free ATS Resume Builder - One-Page Resume Maker | R's PlacePrep</title>
+    <meta
+      name="description"
+      content="Build a clean, ATS-friendly one-page resume in minutes. Nine fonts, three templates, live preview and text-based PDF export. Free, no signup, and your data never leaves your browser."
+    />
+    <meta
+      name="keywords"
+      content="resume builder, ATS resume, free resume maker, one page resume, CV builder, placement resume, fresher resume, software engineer resume"
+    />
+    <meta name="author" content="Rohan Sharma" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="canonical" href="https://resume.placeprep.app/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="R's PlacePrep Resume Builder" />
+    <meta property="og:url" content="https://resume.placeprep.app/" />
+    <meta property="og:title" content="Free ATS Resume Builder — One-Page Resume Maker" />
+    <meta
+      property="og:description"
+      content="Build a clean, ATS-friendly one-page resume in minutes. Live preview, nine fonts, three templates and text-based PDF export. Free and private."
+    />
+    <meta property="og:image" content="https://resume.placeprep.app/og.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Free ATS Resume Builder — One-Page Resume Maker" />
+    <meta
+      name="twitter:description"
+      content="Build a clean, ATS-friendly one-page resume in minutes. Free, no signup, data stays in your browser."
+    />
+    <meta name="twitter:image" content="https://resume.placeprep.app/og.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://resume.placeprep.app/#app",
+            "name": "R's PlacePrep Resume Builder",
+            "url": "https://resume.placeprep.app/",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript",
+            "description": "Free ATS-friendly one-page resume builder with live preview, ten font choices, three templates and text-based PDF export. All data stays in the browser.",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "featureList": [
+              "ATS-friendly text-based PDF export",
+              "Live A4 preview",
+              "Three resume templates",
+              "Ten professional fonts",
+              "Adjustable type sizes and line spacing",
+              "Browser-only storage, no upload"
+            ],
+            "license": "https://github.com/rs-placeprep/placeprep-resume/blob/main/LICENSE",
+            "author": { "@id": "https://resume.placeprep.app/#rohan" },
+            "publisher": { "@id": "https://placeprep.app/#org" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://resume.placeprep.app/#rohan",
+            "name": "Rohan Sharma",
+            "jobTitle": "Founder, R's PlacePrep",
+            "url": "https://rohansrma.me",
+            "sameAs": ["https://github.com/RS-labhub", "https://linkedin.com/in/rohan-sharma-9386rs", "https://x.com/rrs00179"]
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://placeprep.app/#org",
+            "name": "R's PlacePrep",
+            "url": "https://placeprep.app",
+            "founder": { "@id": "https://resume.placeprep.app/#rohan" }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://resume.placeprep.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Is this resume builder free?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. It is completely free with no signup, no watermark and no export limits."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is the exported PDF ATS-friendly?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. The PDF is generated as real selectable text rather than an image, so applicant tracking systems can parse every line."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where is my resume data stored?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Entirely in your own browser using localStorage. Nothing is uploaded to a server."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What font and size should a resume use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Use a clean sans-serif such as Inter, Aptos, Helvetica, Arial or Source Sans 3. Set your name at 20-24pt, section headings at 11-12pt semibold, body text at 10-10.5pt, dates and locations at 9-9.5pt, with line spacing around 1.05-1.15."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long should a resume be?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "One page for students, freshers and anyone with under roughly eight years of experience. The builder warns you when content spills past a single A4 page."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <script>
+      try {
+        var t = localStorage.getItem('resume-builder-theme')
+        var isDark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (isDark) document.documentElement.classList.add('dark')
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

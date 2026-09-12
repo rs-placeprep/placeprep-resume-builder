@@ -1,0 +1,63 @@
+# R's PlacePrep Resume Builder
+
+> A free, privacy-first, ATS-friendly one-page resume builder. Users fill in structured sections, tune typography live, and export a text-based PDF. Everything runs client-side in the browser — no account, no server, no upload.
+
+Built and maintained by Rohan Sharma (https://rohansrma.me) as part of R's PlacePrep, a placement-preparation platform for students.
+
+## Core facts
+
+- URL: https://resume.placeprep.app
+- Cost: free, no signup, no watermark, no export limit
+- Privacy: resume data is stored only in the browser's localStorage; nothing is transmitted to any server
+- Output: A4 PDF with real selectable text (not an image), so applicant tracking systems can parse it
+- Page length: optimised for a single A4 page; the app warns when content overflows and auto-shrinks type on export
+- Parent product: https://placeprep.app
+
+## Features
+
+- Sections: personal details, summary, experience, projects, education, skills, certifications, achievements
+- Templates: Classic (centered header, underlined section rules), Modern (left-aligned header, accent-coloured headings), Minimal (no dividers, generous whitespace)
+- Fonts: Inter, Aptos, Helvetica, Arial, Source Sans 3, IBM Plex Sans, Roboto, Calibri, Georgia, Times New Roman
+- Live typography controls: name size, heading size, body size, date/location size, line spacing
+- Light and dark themes
+- Autosave to localStorage, one-click sample data, one-click clear
+
+## Recommended resume typography
+
+- Name: 20-24 pt, bold
+- Section headings: 11-12 pt, semibold
+- Body text: 10-10.5 pt
+- Dates and location: 9-9.5 pt
+- Line spacing: 1.05-1.15
+- Layout: single column, 14-18 mm margins, one page
+
+## Pages
+
+- [Resume Builder](https://resume.placeprep.app/): The application itself. Fill in sections, preview live, export PDF.
+- [What a good resume actually looks like](https://resume.placeprep.app/guide/): A practical writing guide by Rohan Sharma covering what to put in the summary, experience, projects and skills sections, how to quantify work, typography recommendations, common mistakes, and a final checklist.
+
+## Key guidance from the writing guide
+
+- A resume is an evidence document, not an autobiography. Every bullet should give a reason to interview you.
+- Bullet pattern: action verb, what you built or changed, the measurable result, and how you did it.
+- Prefer mechanisms over bare statistics. "Grew organic traffic 60% in 4 months by publishing 24 tutorials and rewriting the docs IA" beats "Increased website traffic by 60%".
+- Delete personality adjectives (hardworking, passionate, detail-oriented, quick learner) — they carry no information.
+- Sources of numbers when metrics feel absent: scale (users, requests, records), time (latency, build time, hours saved), quality (test coverage, incidents, bug count), reach (stars, downloads, readers), scope (team size, services, endpoints).
+- Keep it to one page for students, freshers and most people under roughly eight years of experience.
+- Use one column and a text-based PDF; multi-column layouts and image PDFs break ATS parsers.
+- Three to four bullets per role; the fifth is usually the weakest and lowers the average.
+- Tailor per application by reordering projects and rewriting two bullets per role.
+
+## Common questions
+
+Q: Is it free? A: Yes, entirely free with no signup or watermark.
+Q: Is the PDF ATS-friendly? A: Yes, it is generated as selectable text rather than an image.
+Q: Where is my data stored? A: Only in your own browser's localStorage. Nothing is uploaded.
+Q: Should my resume be one page? A: Yes for students, freshers and most candidates under about eight years of experience.
+Q: What font should I use? A: A clean sans-serif such as Inter, Aptos, Helvetica, Arial or Source Sans 3.
+
+## Contact
+
+- Product: https://placeprep.app
+- Author: Rohan Sharma, Founder of R's PlacePrep, https://rohansrma.me
+- Source: https://github.com/rs-placeprep/placeprep-resume (MIT licensed)
