@@ -1,7 +1,8 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useResumeStore } from '@/hooks/use-resume-store'
 import { useStyleSettings } from '@/hooks/use-style-settings'
-import { generateResumePdf } from '@/lib/generate-pdf'
+import { downloadResumeBundle } from '@/lib/resume-backup'
+import type { ParsedBackup } from '@/lib/resume-backup'
 import { AppHeader } from '@/components/app-header'
 import { AppFooter } from '@/components/app-footer'
 import { ResumePreview } from '@/components/resume-preview'
@@ -18,27 +19,57 @@ import { SkillsForm } from '@/components/form/skills-form'
 import { ExtrasForm } from '@/components/form/extras-form'
 
 export default function App() {
-  const { data, update, reset, loadSample } = useResumeStore()
-  const { style, update: updateStyle, resetStyle } = useStyleSettings()
+  const { data, setData, update, reset, loadSample } = useResumeStore()
+  const { style, update: updateStyle, resetStyle, replaceStyle } = useStyleSettings()
   const [downloading, setDownloading] = useState(false)
   const [celebrating, setCelebrating] = useState(false)
   const [overflowing, setOverflowing] = useState(false)
+  const [toast, setToast] = useState<{ tone: 'ok' | 'error'; message: string } | null>(null)
 
   const handleOverflowChange = useCallback((v: boolean) => setOverflowing(v), [])
+
+  useEffect(() => {
+    if (!toast) return
+    const timer = setTimeout(() => setToast(null), 4000)
+    return () => clearTimeout(timer)
+  }, [toast])
 
   const handleDownload = async () => {
     setDownloading(true)
     try {
-      await generateResumePdf(data, style)
+      // One ZIP with the PDF plus a re-importable copy of the form
+      await downloadResumeBundle(data, style)
       setCelebrating(true)
+    } catch {
+      setToast({ tone: 'error', message: 'Could not generate the download. Please try again.' })
     } finally {
       setDownloading(false)
     }
   }
 
+  const handleImport = useCallback(
+    (backup: ParsedBackup) => {
+      setData(backup.resume)
+      replaceStyle(backup.style)
+      setToast({ tone: 'ok', message: 'Resume loaded from file.' })
+    },
+    [setData, replaceStyle],
+  )
+
+  const handleImportError = useCallback((message: string) => {
+    setToast({ tone: 'error', message })
+  }, [])
+
   return (
     <div className="flex min-h-screen flex-col bg-background lg:h-screen lg:overflow-hidden">
-      <AppHeader onDownload={handleDownload} onReset={reset} onLoadSample={loadSample} downloading={downloading} />
+      <AppHeader
+        onDownload={handleDownload}
+        onReset={reset}
+        onLoadSample={loadSample}
+        onImport={handleImport}
+        onImportError={handleImportError}
+        downloading={downloading}
+      />
 
       <main className="lg:min-h-0 lg:flex-1 lg:overflow-hidden">
         <div className="mx-auto grid max-w-[1600px] grid-cols-1 lg:h-full lg:grid-cols-[minmax(0,620px)_1fr]">
@@ -95,6 +126,20 @@ export default function App() {
 
       <AppFooter />
       <CelebrationOverlay open={celebrating} onClose={() => setCelebrating(false)} />
+
+      {toast && (
+        <div
+          role="status"
+          aria-live="polite"
+          className={`animate-fade-up fixed bottom-5 left-1/2 z-[60] max-w-[92vw] -translate-x-1/2 rounded-xl border px-4 py-2.5 text-sm font-medium shadow-lg backdrop-blur-md ${
+            toast.tone === 'ok'
+              ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+              : 'border-red-500/30 bg-red-500/10 text-red-600 dark:text-red-400'
+          }`}
+        >
+          {toast.message}
+        </div>
+      )}
     </div>
   )
 }

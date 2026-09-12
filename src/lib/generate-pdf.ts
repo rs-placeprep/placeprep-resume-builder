@@ -3,9 +3,13 @@ import { defaultStyleSettings } from '@/hooks/use-style-settings'
 import { getPdfFont } from '@/lib/fonts'
 import { getTemplateSpec } from '@/lib/templates'
 
+export function resumeBaseName(data: ResumeData) {
+  return (data.personal.name || 'Resume').trim().replace(/\s+/g, '_')
+}
+
 // Generates a text-based (not image) PDF so it stays ATS-parsable and searchable.
 // Renders at a candidate font scale, and if content still overflows one A4 page, retries at progressively smaller scales down to a floor before giving up.
-export async function generateResumePdf(data: ResumeData, style: StyleSettings = defaultStyleSettings) {
+export async function buildResumePdfBlob(data: ResumeData, style: StyleSettings = defaultStyleSettings): Promise<Blob> {
   const { jsPDF } = await import('jspdf')
 
   const scales = [1, 0.94, 0.88, 0.82, 0.76]
@@ -17,9 +21,15 @@ export async function generateResumePdf(data: ResumeData, style: StyleSettings =
     if (result.pages <= 1) break
   }
 
-  const doc = lastResult!.doc
-  const fileName = `${(data.personal.name || 'Resume').trim().replace(/\s+/g, '_')}_Resume.pdf`
-  const blob = doc.output('blob')
+  return lastResult!.doc.output('blob')
+}
+
+export async function generateResumePdf(data: ResumeData, style: StyleSettings = defaultStyleSettings) {
+  const blob = await buildResumePdfBlob(data, style)
+  triggerDownload(blob, `${resumeBaseName(data)}_Resume.pdf`)
+}
+
+export function triggerDownload(blob: Blob, fileName: string) {
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url

@@ -1,20 +1,33 @@
 import { useState } from 'react'
-import { Download, Menu, RotateCcw } from 'lucide-react'
+import { Download, Menu, RotateCcw, Upload } from 'lucide-react'
 import { ThemeToggle } from './theme-toggle'
 import { MobileNav } from './mobile-nav'
+import { UploadResumeButton } from './upload-resume-button'
 import { Button } from './ui/button'
+import type { ParsedBackup } from '@/lib/resume-backup'
 
 interface Props {
   onDownload?: () => void
   onReset?: () => void
   onLoadSample?: () => void
+  onImport?: (backup: ParsedBackup) => void
+  onImportError?: (message: string) => void
   downloading?: boolean
   variant?: 'builder' | 'guide'
 }
 
-export function AppHeader({ onDownload, onReset, onLoadSample, downloading = false, variant = 'builder' }: Props) {
+export function AppHeader({
+  onDownload,
+  onReset,
+  onLoadSample,
+  onImport,
+  onImportError,
+  downloading = false,
+  variant = 'builder',
+}: Props) {
   const [menuOpen, setMenuOpen] = useState(false)
   const isGuide = variant === 'guide'
+  const noop = () => {}
 
   return (
     <>
@@ -30,35 +43,50 @@ export function AppHeader({ onDownload, onReset, onLoadSample, downloading = fal
           {isGuide ? (
             <nav className="flex shrink-0 items-center gap-2">
               <ThemeToggle />
-              <a href="/" className="btn-solid h-9 text-xs sm:text-sm">
+              <a href="/" className="btn-solid h-9 text-sm">
                 Build my resume
               </a>
             </nav>
           ) : (
             <>
-              <nav className="hidden shrink-0 items-center gap-2 lg:flex">
+              <nav className="hidden shrink-0 items-center gap-1 lg:flex">
                 <a href="/guide/" className="btn-ghost h-9 px-3 text-sm font-medium">
                   Resume tips
                 </a>
-                <Button variant="ghost" size="sm" onClick={onLoadSample} className="h-9">
+                <Button variant="ghost" onClick={onLoadSample} className="px-3">
                   Load sample
                 </Button>
-                <Button variant="ghost" size="sm" onClick={onReset} className="h-9">
+                <UploadResumeButton
+                  onLoaded={onImport ?? noop}
+                  onError={onImportError ?? noop}
+                  className="btn-ghost h-9 gap-2 px-3 text-sm font-medium"
+                >
+                  <Upload className="h-3.5 w-3.5" />
+                  Upload JSON
+                </UploadResumeButton>
+                <Button variant="ghost" onClick={onReset} className="px-3">
                   <RotateCcw className="h-3.5 w-3.5" />
                   Clear
                 </Button>
                 <ThemeToggle />
-                <Button variant="solid" size="sm" onClick={onDownload} disabled={downloading} className="h-9">
+                <Button variant="solid" onClick={onDownload} disabled={downloading} className="ml-1">
                   <Download className="h-3.5 w-3.5" />
-                  {downloading ? 'Generating…' : 'Download PDF'}
+                  {downloading ? 'Generating…' : 'Download'}
                 </Button>
               </nav>
 
               <div className="flex shrink-0 items-center gap-2 lg:hidden">
+                <UploadResumeButton
+                  onLoaded={onImport ?? noop}
+                  onError={onImportError ?? noop}
+                  className="btn-icon h-9 w-9"
+                >
+                  <Upload className="h-4 w-4" />
+                </UploadResumeButton>
                 <ThemeToggle />
-                <Button variant="solid" size="sm" onClick={onDownload} disabled={downloading} className="h-9">
+                <Button variant="solid" onClick={onDownload} disabled={downloading} className="px-3">
                   <Download className="h-4 w-4" />
-                  <span className="hidden sm:inline">{downloading ? 'Generating…' : 'Download PDF'}</span>
+                  <span className="hidden sm:inline">{downloading ? 'Generating…' : 'Download'}</span>
                 </Button>
                 <button
                   type="button"
@@ -81,6 +109,8 @@ export function AppHeader({ onDownload, onReset, onLoadSample, downloading = fal
           onClose={() => setMenuOpen(false)}
           onReset={onReset}
           onLoadSample={onLoadSample}
+          onImport={onImport}
+          onImportError={onImportError}
         />
       )}
     </>

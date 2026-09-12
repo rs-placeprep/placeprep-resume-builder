@@ -1,12 +1,16 @@
 import { useEffect } from 'react'
-import { ArrowUpRight, FileText, RotateCcw, X } from 'lucide-react'
+import { ArrowUpRight, FileText, RotateCcw, Upload, X } from 'lucide-react'
 import { GithubIcon, LinkedinIcon, XIcon, DiscordIcon } from '@/components/icons/social-icons'
+import { UploadResumeButton } from '@/components/upload-resume-button'
+import type { ParsedBackup } from '@/lib/resume-backup'
 
 interface Props {
   open: boolean
   onClose: () => void
   onReset?: () => void
   onLoadSample?: () => void
+  onImport?: (backup: ParsedBackup) => void
+  onImportError?: (message: string) => void
 }
 
 const SOCIALS = [
@@ -16,7 +20,7 @@ const SOCIALS = [
   { icon: DiscordIcon, href: '#', label: 'Discord' },
 ]
 
-export function MobileNav({ open, onClose, onReset, onLoadSample }: Props) {
+export function MobileNav({ open, onClose, onReset, onLoadSample, onImport, onImportError }: Props) {
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
@@ -79,6 +83,21 @@ export function MobileNav({ open, onClose, onReset, onLoadSample }: Props) {
               <FileText className="h-4 w-4 text-muted-foreground" />
               Load sample resume
             </button>
+
+            <UploadResumeButton
+              onLoaded={(backup) => {
+                onImport?.(backup)
+                onClose()
+              }}
+              onError={(message) => {
+                onImportError?.(message)
+                onClose()
+              }}
+              className="flex w-full items-center gap-2.5 rounded-xl border border-border px-3.5 py-3 text-left text-sm font-medium transition-colors hover:border-primary/40 hover:text-primary"
+            >
+              <Upload className="h-4 w-4 text-muted-foreground" />
+              Upload resume JSON
+            </UploadResumeButton>
 
             <button
               type="button"

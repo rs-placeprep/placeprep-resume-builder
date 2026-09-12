@@ -47,5 +47,9 @@ export function useStyleSettings() {
     setStyle(defaultStyleSettings)
   }, [])
 
-  return { style, update, resetStyle }
+  const replaceStyle = useCallback((next: StyleSettings) => {
+    setStyle({ ...defaultStyleSettings, ...next })
+  }, [])
+
+  return { style, update, resetStyle, replaceStyle }
 }
