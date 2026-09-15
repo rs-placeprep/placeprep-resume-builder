@@ -2,6 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/cmuserif-regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./assets/fonts/cmuserif-bold.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: italic;
+  font-weight: 400;
+  src: url('./assets/fonts/cmuserif-italic.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: italic;
+  font-weight: 700;
+  src: url('./assets/fonts/cmuserif-bolditalic.ttf') format('truetype');
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --background: 255 255 255;

@@ -5,7 +5,7 @@ interface Props {
   onChange: (value: string) => void
 }
 
-const MAX = 500
+const MAX = 520
 
 export function SummaryForm({ value, onChange }: Props) {
   return (

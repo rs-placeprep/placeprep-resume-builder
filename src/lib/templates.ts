@@ -26,7 +26,7 @@ export interface TemplateSpec {
 
 export const TEMPLATE_OPTIONS: TemplateOption[] = [
   { value: 'classic', label: 'Classic', description: 'Centered header, ruled sections' },
-  { value: 'modern', label: 'Modern', description: 'Left header, heavy rules, tight grid' },
+  { value: 'modern', label: "Jake's style", description: 'Classic academic layout with serif styling' },
   { value: 'minimal', label: 'Minimal', description: 'Wide caps, no rules, open spacing' },
 ]
 
@@ -49,20 +49,20 @@ const SPECS: Record<ResumeTemplate, TemplateSpec> = {
     stackMeta: false,
   },
   modern: {
-    headerAlign: 'left',
+    headerAlign: 'center',
     nameCase: 'none',
-    nameTracking: '-0.02em',
-    headerRule: true,
-    headerRuleWidth: 2.5,
+    nameTracking: '-0.01em',
+    headerRule: false,
+    headerRuleWidth: 0,
     sectionRule: true,
-    sectionRuleWidth: 2,
-    headingTracking: '0.14em',
-    headingGap: 7,
-    sectionGap: 16,
-    itemGap: 11,
+    sectionRuleWidth: 1,
+    headingTracking: '0.08em',
+    headingGap: 6,
+    sectionGap: 12,
+    itemGap: 10,
     padX: 52,
-    padY: 44,
-    subtitleItalic: false,
+    padY: 40,
+    subtitleItalic: true,
     stackMeta: false,
   },
   minimal: {

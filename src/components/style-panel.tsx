@@ -13,6 +13,12 @@ interface Props {
 }
 
 export function StylePanel({ style, onChange, onReset }: Props) {
+  const templateFontMap: Record<StyleSettings['template'], string> = {
+    classic: 'inter',
+    modern: 'computer-modern',
+    minimal: 'times-new-roman',
+  }
+
   return (
     <FormSection
       title="Style & typography"
@@ -30,7 +36,11 @@ export function StylePanel({ style, onChange, onReset }: Props) {
             <span className="field-label">Template</span>
             <Select
               value={style.template}
-              onChange={(v) => onChange('template', v as StyleSettings['template'])}
+              onChange={(v) => {
+                const next = v as StyleSettings['template']
+                onChange('template', next)
+                onChange('fontFamily', templateFontMap[next])
+              }}
               options={TEMPLATE_OPTIONS.map((t) => ({ value: t.value, label: t.label, description: t.description }))}
               searchThreshold={-1}
             />
