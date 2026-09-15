@@ -126,7 +126,7 @@ export function ResumePreview({ data, style, onOverflowChange }: Props) {
   const sectionProps = { size: headingSize, spec: t, density, titleWeight: isJakeStyle ? 400 : 700 }
 
   return (
-    <div ref={frameRef} className="mx-auto w-full max-w-[794px]">
+    <div ref={frameRef} className="mx-auto w-full min-w-0 max-w-[794px]">
       <div
         className="overflow-hidden rounded-md border border-border bg-white shadow-lg shadow-black/5"
         style={{ height: A4_HEIGHT_PX * widthScale }}

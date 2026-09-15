@@ -3,6 +3,7 @@ import { AppHeader } from '@/components/app-header'
 import { AppFooter } from '@/components/app-footer'
 import { GuideCoverArt } from '@/components/guide-cover-art'
 import { GuideToc } from '@/components/guide-toc'
+import { GuideResumeCompare } from '@/components/guide-resume-compare'
 import { StripedPattern } from '@/components/ui/striped-pattern'
 
 function Bad({ children }: { children: React.ReactNode }) {
@@ -44,6 +45,7 @@ function Section({ id, title, children }: { id: string; title: string; children:
 const CONTENTS = [
   { id: 'what-recruiters-do', label: 'What actually happens to your resume' },
   { id: 'shape', label: 'The shape of a good resume' },
+  { id: 'example', label: 'A real before and after' },
   { id: 'summary', label: 'The summary' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
@@ -94,8 +96,8 @@ export default function GuidePage() {
         </div>
       </div>
 
-      <main className="mx-auto grid max-w-[1400px] gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_240px] lg:py-14">
-        <article className="mx-auto w-full max-w-3xl">
+      <main className="mx-auto grid min-w-0 max-w-[1400px] gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_240px] lg:py-14">
+        <article className="mx-auto w-full min-w-0 max-w-3xl">
           <p className="text-lg leading-relaxed text-foreground/90">
             I have written resumes that got ignored and resumes that got replies within hours. The content of my career
             barely changed between the two. What changed was how much of it was <em>verifiable</em>.
@@ -143,6 +145,21 @@ export default function GuidePage() {
               If you have two or more real internships, experience goes above projects. If your projects are stronger
               than your internships, flip them. The rule is simple: the strongest evidence goes highest, because the
               skim starts at the top and stops early.
+            </p>
+          </Section>
+
+          <Section id="example" title="A real before and after">
+            <p className="leading-relaxed text-foreground/80">
+              Same person, same experience, same projects. The only thing that changed is how specific and verifiable
+              every line is. This is the exact difference between a resume that gets skimmed and ignored, and one that
+              gets a reply.
+            </p>
+            <GuideResumeCompare />
+            <p className="leading-relaxed text-foreground/80">
+              Notice the before version is not badly written, it just hedges everywhere: vague adjectives, a bullet
+              list of skills nobody can verify, an email address that looks unprofessional, and duties instead of
+              outcomes. The after version says less overall and lands harder, because every line either proves scale,
+              proves difficulty, or proves impact.
             </p>
           </Section>
 
